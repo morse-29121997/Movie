@@ -48,7 +48,7 @@ class MovieDetailActivity :
         vm.run {
             onEvent(MovieDetailEvents.GetMovieDetail(movie?.id ?: 0))
             onEvent(MovieDetailEvents.GetSimilarMovies(movie?.id ?: 0))
-            onEvent(MovieDetailEvents.IsFavourite(movie!!))
+            onEvent(MovieDetailEvents.GetAllFavouriteMovies(movie!!))
         }
     }
 

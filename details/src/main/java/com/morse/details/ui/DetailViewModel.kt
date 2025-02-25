@@ -34,7 +34,7 @@ data class MovieDetailState(
 )
 
 sealed class MovieDetailEvents : Events {
-    data object GetAllFavouriteMovies : MovieDetailEvents()
+    data class GetAllFavouriteMovies(val movie: Movie) : MovieDetailEvents()
     data class AddMovieToFavourite(val movie: Movie) : MovieDetailEvents()
     data class DeleteMovieFromFavourite(val movie: Movie) : MovieDetailEvents()
     data class GetMovieDetail(val id: Int) : MovieDetailEvents()
@@ -63,8 +63,8 @@ class DetailViewModel @Inject constructor(
                 isFavouriteMovie(event.movie)
             }
 
-            MovieDetailEvents.GetAllFavouriteMovies -> {
-                getAllFavouriteMovies()
+            is MovieDetailEvents.GetAllFavouriteMovies -> {
+                getAllFavouriteMovies(event.movie)
             }
 
             is MovieDetailEvents.DeleteMovieFromFavourite -> {
@@ -103,12 +103,13 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    private fun getAllFavouriteMovies() {
+    private fun getAllFavouriteMovies(movie: Movie) {
         viewModelScope.launch {
             allFavouriteMoviesUseCase.invoke().onEach { state ->
                 if (state is State.Success) {
+                    val favourits =  (state as State.Success<List<Movie>>).data
                     update {
-                        it.copy(favouriteMovies = (state as State.Success<List<Movie>>).data)
+                        it.copy(favouriteMovies = (state as State.Success<List<Movie>>).data , isFavourite = favourits.count { it.id == movie.id } > 0 )
                     }
                 }
             }.launchIn(this)

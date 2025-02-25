@@ -31,9 +31,18 @@ class MoviesListActivity :
         )
     }) { movie, isFavourite ->
         if (isFavourite) {
-            vm.onEvent(MoviesEvents.DeleteMovieFromFavourite(movie = movie))
-        } else {
             vm.onEvent(MoviesEvents.AddMovieToFavourite(movie = movie))
+        } else {
+            vm.onEvent(MoviesEvents.DeleteMovieFromFavourite(movie = movie))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        vm.run {
+            onEvent(MoviesEvents.GetAllFavouriteMovies)
+            onEvent(MoviesEvents.GetMostPopularMovies2024)
+            onEvent(MoviesEvents.GetNowPlayingMovies)
         }
     }
 
@@ -52,9 +61,9 @@ class MoviesListActivity :
                     dataObject.isFavourite = !dataObject.isFavourite
                     dataBinding.movie = dataObject
                     if (dataObject.isFavourite) {
-                        vm.onEvent(MoviesEvents.DeleteMovieFromFavourite(movie = dataObject))
-                    } else {
                         vm.onEvent(MoviesEvents.AddMovieToFavourite(movie = dataObject))
+                    } else {
+                        vm.onEvent(MoviesEvents.DeleteMovieFromFavourite(movie = dataObject))
                     }
                 }
                 dataBinding.executePendingBindings()
@@ -67,7 +76,10 @@ class MoviesListActivity :
             }
 
             withData(
-                movies
+                movies.onEach { movie ->
+                    movie.isFavourite =
+                        vm.state.value.favouriteMovies.count { it.title == movie.title } > 0
+                }
             )
         }
     }

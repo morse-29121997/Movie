@@ -20,6 +20,7 @@ object MovieMapper : Mapper<MovieEntity, Movie> {
 
     override fun to(outputType: Movie): MovieEntity {
         return MovieEntity(
+            id = outputType.id,
             posterPath = outputType.poster_path,
             backdropPath = outputType.backdrop_path ?: "",
             releaseDate = outputType.release_date,

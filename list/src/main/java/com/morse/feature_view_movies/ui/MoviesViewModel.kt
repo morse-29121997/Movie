@@ -46,6 +46,7 @@ class MoviesViewModel @Inject constructor(
         state = MutableStateFlow(MoviesState())
         onEvent(MoviesEvents.GetMostPopularMovies2024)
         onEvent(MoviesEvents.GetNowPlayingMovies)
+        onEvent(MoviesEvents.GetAllFavouriteMovies)
     }
 
     override fun onEvent(event: Events) {
@@ -76,20 +77,24 @@ class MoviesViewModel @Inject constructor(
     private fun addMovieToFavourite(movie: Movie) {
         viewModelScope.launch {
             addToFavouriteUseCase.invoke(movie)
+            getAllFavouriteMovies()
         }
     }
 
     private fun deleteMovieFromFavourite(movie: Movie) {
         viewModelScope.launch {
             deleteMovieFromFavouriteUseCase.invoke(movie)
+            getAllFavouriteMovies()
         }
     }
 
     private fun getAllFavouriteMovies() {
         viewModelScope.launch {
             allFavouriteMoviesUseCase.invoke().onEach { state ->
-                update {
-                    it.copy(favouriteMovies = (state as State.Success<List<Movie>>).data)
+                if (state is State.Success) {
+                    update {
+                        it.copy(favouriteMovies = (state as State.Success<List<Movie>>).data)
+                    }
                 }
             }.launchIn(this)
         }
