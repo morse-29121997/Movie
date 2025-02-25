@@ -46,7 +46,7 @@ Go to the [Releases](https://github.com/Devil2020/) to download the latest APK.
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
 - [Proto Bufs Data Store](https://github.com/square/retrofit) - construct the Cache .
 - [Gson](https://github.com/square/moshi/) - A modern JSON library for Kotlin and Java.
-- [Picasso](https://square.github.io/picasso/)
+- [Glide](https://square.github.io/Glide/)
 - [Material-Components](https://github.com/material-components/material-components-android) - Material design components like ripple animation, cardView.
 
 
