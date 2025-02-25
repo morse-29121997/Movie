@@ -15,6 +15,12 @@ class MoviesAdapter(
     PAGEDATA_COMPARATOR.getDiffUtil()
 ) {
 
+    private val favouriteMovies = arrayListOf<Movie>()
+
+    fun addFavouriteMovies(movies: List<Movie>) {
+        favouriteMovies.clear()
+        favouriteMovies.addAll(movies)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder(
@@ -27,7 +33,9 @@ class MoviesAdapter(
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val item = getItem(position)!!
         holder.binding.root.setOnClickListener { onMovieClickListener.invoke(item) }
-        holder.binding.movie = item
+        holder.binding.movie = item.apply {
+            isFavourite = favouriteMovies.count { it.title == title } > 0
+        }
         holder.binding.favIv.setOnClickListener {
             item.isFavourite = !item.isFavourite
             holder.binding.movie = item

@@ -94,7 +94,7 @@ class MovieDetailActivity :
             }
 
             withData(
-                movies
+                movies.onEach { movie ->  movie.isFavourite = vm.state.value.favouriteMovies.count { it.title == movie.title } > 0}
             )
         }
     }

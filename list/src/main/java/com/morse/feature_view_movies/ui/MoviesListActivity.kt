@@ -92,7 +92,11 @@ class MoviesListActivity :
             if (state.popular2024Movies is State.Success) {
                 setup2024PopularAdapter(state.popular2024Movies.data as ArrayList<Movie>)
             }
-            pagingAdapter.submitData(lifecycle, state.nowPlayingMovies)
+
+            pagingAdapter.apply {
+                addFavouriteMovies(state.favouriteMovies)
+                submitData(lifecycle, state.nowPlayingMovies)
+            }
         }
         collect(pagingAdapter.loadStateFlow) { loadState ->
             when (loadState.refresh) {

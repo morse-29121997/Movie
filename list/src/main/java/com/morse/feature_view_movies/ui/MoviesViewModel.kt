@@ -58,10 +58,12 @@ class MoviesViewModel @Inject constructor(
 
             is MoviesEvents.DeleteMovieFromFavourite -> {
                 deleteMovieFromFavourite(event.movie)
+                getAllFavouriteMovies()
             }
 
             is MoviesEvents.AddMovieToFavourite -> {
                 addMovieToFavourite(event.movie)
+                getAllFavouriteMovies()
             }
 
             is MoviesEvents.GetMostPopularMovies2024 -> {
