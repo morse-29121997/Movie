@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import
+            alias="Details"
+            type="com.morse.domain.models.MovieDetails" />
+
+        <variable
+            name="detail"
+            type="Details" />
+        <variable
+            name="isFavourite"
+            type="Boolean" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.MovieDetailActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/movie_bg_iv"
+                loadImage="@{detail.getFullBackdropUrl()}"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="fitXY"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/movie_fg_iv"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/movie_detail_fg"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fav_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@{isFavourite ? @drawable/ic_added_to_saved : @drawable/ic_add_to_saved }"
+                app:layout_constraintBottom_toBottomOf="@id/movie_fg_iv"
+                app:layout_constraintEnd_toEndOf="@id/movie_fg_iv" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/movie_play_iv"
+                viewIf="@{detail.video}"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/play"
+                app:layout_constraintBottom_toBottomOf="@id/movie_bg_iv"
+                app:layout_constraintEnd_toEndOf="@id/movie_bg_iv"
+                app:layout_constraintStart_toStartOf="@id/movie_bg_iv"
+                app:layout_constraintTop_toTopOf="@id/movie_bg_iv" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/movie_close_iv"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/movie_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="@{detail.title}"
+                android:textAppearance="@style/font14Bold"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/movie_bg_iv" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/four_k_iv"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/__k"
+                app:layout_constraintBottom_toBottomOf="@id/movie_name_tv"
+                app:layout_constraintStart_toEndOf="@id/movie_name_tv"
+                app:layout_constraintTop_toTopOf="@id/movie_name_tv" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/time_iv"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/time"
+                app:layout_constraintStart_toStartOf="@id/movie_name_tv"
+                app:layout_constraintTop_toBottomOf="@id/movie_name_tv" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="@{String.valueOf(detail.runtime)}"
+                android:textAppearance="@style/font14Medium"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/time_iv"
+                app:layout_constraintStart_toEndOf="@id/time_iv"
+                app:layout_constraintTop_toTopOf="@id/time_iv" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/time_minute_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                android:text="@string/minute"
+                android:textAppearance="@style/font14Medium"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/time_tv"
+                app:layout_constraintStart_toEndOf="@id/time_tv"
+                app:layout_constraintTop_toTopOf="@id/time_tv" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/star_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/star_iv"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/star"
+                app:layout_constraintStart_toEndOf="@id/star_guideline"
+
+                app:layout_constraintTop_toBottomOf="@id/movie_name_tv" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rate_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="@{String.valueOf(detail.vote_count)}"
+                android:textAppearance="@style/font14Medium"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/star_iv"
+                app:layout_constraintStart_toEndOf="@id/star_iv"
+                app:layout_constraintTop_toTopOf="@id/star_iv" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rate_imdb_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="@string/imdp"
+                android:textAppearance="@style/font14Medium"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/rate_tv"
+                app:layout_constraintStart_toEndOf="@id/rate_tv"
+                app:layout_constraintTop_toTopOf="@id/rate_tv" />
+
+
+            <View
+                android:id="@+id/time_divider_v"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/time_iv" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/publish_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="@{detail.release_date}"
+                android:textAppearance="@style/font14Medium"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@id/status_tv"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/time_iv"
+                app:layout_constraintTop_toBottomOf="@id/time_divider_v" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/status_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="@{detail.original_language}"
+                android:textAppearance="@style/font14Medium"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/publish_date_tv"
+                app:layout_constraintEnd_toStartOf="@id/genre_tv"
+                app:layout_constraintStart_toEndOf="@id/publish_date_tv"
+                app:layout_constraintTop_toTopOf="@id/publish_date_tv" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/genre_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="@{detail.getGenre()}"
+                android:textAppearance="@style/font14Medium"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/status_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/status_tv"
+                app:layout_constraintTop_toTopOf="@id/status_tv" />
+
+            <View
+                android:id="@+id/date_divider_v"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/publish_date_tv" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="@{detail.overview}"
+                android:textAppearance="@style/font14Medium"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_divider_v" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/similar_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/description_tv"
+                tools:itemCount="5"
+                tools:listitem="@layout/similar_movie_item_layout" />
+
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="similar_rv,date_divider_v,description_tv,four_k_iv,fav_iv,genre_tv,time_divider_v,time_iv,time_minute_tv,time_tv,rate_imdb_tv,rate_tv,star_iv,star_guideline,rate_tv,movie_play_iv,movie_fg_iv" />
+
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>
