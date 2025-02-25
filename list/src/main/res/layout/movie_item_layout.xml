@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.morse.domain.models.Movie" alias="Movie" />
+        <variable
+            name="movie"
+            type="Movie" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="@drawable/movie_bg"
+    android:layout_marginVertical="@dimen/_5sdp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/movie_poster_image_iv"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        tools:src="@drawable/test_image"
+        android:padding="1dp"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/movie_foreground_image_iv"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        tools:src="@drawable/movie_fd"
+        loadImage="@{movie.fullPosterUrl}"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fav_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@{movie.favourite ? @drawable/ic_added_to_saved : @drawable/ic_add_to_saved }"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/genre_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_14sdp"
+        android:paddingVertical="@dimen/_2sdp"
+        android:background="@drawable/genre_list_bg"
+        android:text="@string/now_playing"
+        app:layout_constraintTop_toBottomOf="@id/movie_desc_tv"
+        app:layout_constraintStart_toStartOf="@id/movie_desc_tv"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:gravity="center"
+        android:textAppearance="@style/font14Bold"
+        android:textColor="@color/white"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/movie_desc_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_2sdp"
+        android:text="@{movie.overview}"
+        app:layout_constraintTop_toBottomOf="@id/movie_name_ntv"
+        android:layout_marginVertical="@dimen/_5sdp"
+        app:layout_constraintStart_toStartOf="@id/movie_name_ntv"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:lines="2"
+        android:ellipsize="end"
+        android:gravity="start"
+        android:textAppearance="@style/font14Bold"
+        android:textColor="@color/gray"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/movie_name_ntv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="0dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_14sdp"
+        android:text="@{movie.title}"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/movie_poster_image_iv"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:gravity="start"
+        android:textAppearance="@style/font14Bold"
+        android:textColor="@color/black"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

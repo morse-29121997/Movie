@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.MoviesListActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/user_image_iv"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/user_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/welcome_message_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="@string/welcome_back"
+                android:textAppearance="@style/font14Bold"
+                android:textSize="@dimen/_18ssp"
+                app:layout_constraintStart_toEndOf="@id/user_image_iv"
+                app:layout_constraintTop_toTopOf="@id/user_image_iv" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/name_iv"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:src="@drawable/my_name_colorful"
+                app:layout_constraintStart_toStartOf="@id/welcome_message_tv"
+                app:layout_constraintTop_toTopOf="@id/welcome_message_tv" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/best_movies_at_2024_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:text="@string/top_movies_2024"
+                android:textAppearance="@style/font14Bold"
+                android:textSize="@dimen/_18ssp"
+                app:layout_constraintStart_toStartOf="@id/user_image_iv"
+                app:layout_constraintTop_toBottomOf="@id/user_image_iv" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/top_movies_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/best_movies_at_2024_tv"
+                tools:itemCount="3"
+                tools:listitem="@layout/popular_movie_item_layout" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/now_playing_movies_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:text="@string/now_playing_movies"
+                android:textAppearance="@style/font14Bold"
+                android:textSize="@dimen/_18ssp"
+                app:layout_constraintStart_toStartOf="@id/user_image_iv"
+                app:layout_constraintTop_toBottomOf="@id/top_movies_rv" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/now_playing_movies_rv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/now_playing_movies_tv"
+                tools:itemCount="3"
+                tools:listitem="@layout/movie_item_layout" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/popularMovies2024Success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="best_movies_at_2024_tv,top_movies_rv" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/nowPlayingMoviesSuccess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="now_playing_movies_tv,now_playing_movies_rv" />
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
