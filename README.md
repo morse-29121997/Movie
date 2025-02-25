@@ -14,7 +14,7 @@
 </br>
 
 ## Download
-Go to the [Releases]([https://github.com/Devil2020/](https://github.com/morse-29121997/Movie/releases/tag/1.0.0)) to download the latest APK.
+Go to the [Releases]([https://github.com/Devil2020/](https://github.com/morse-29121997/Movie/releases/tag/1.0.0) to download the latest APK.
 
 
 
