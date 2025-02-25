@@ -1,5 +1,5 @@
 <p align="center">
-<img src=".images/paymob.png"/>
+<img src=".demo/paymob.png"/>
 </p>
 
 <h1 align="center">Paymob</h1>
@@ -18,7 +18,7 @@ Go to the [Releases](https://github.com/Devil2020/) to download the latest APK.
 
 
 
-<img src=".images/demo.gif" align="right" width="32%"/>
+<img src=".demo/demo.gif" align="right" width="32%"/>
 
 
 
