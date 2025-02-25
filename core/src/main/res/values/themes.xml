@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="font14Medium" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/morse_medium</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+    </style>
+
+
+    <style name="font10Medium" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/morse_medium</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+    </style>
+
+    <style name="font14Bold" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/morse_bold</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+    </style>
+
+</resources>

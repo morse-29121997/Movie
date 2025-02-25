@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MoviesMagic</string>
+    <string name="splash_text">Discover your next favorite film with just a tap. Explore a vast library of movies, read reviews, and watch trailers. Dive into a world of cinematic experiences tailored just for you!</string>
+    <string name="movie_magic">Movie Magic</string>
+</resources>
