@@ -14,7 +14,7 @@
 </br>
 
 ## Download
-Go to the [Releases](https://github.com/Devil2020/) to download the latest APK.
+Go to the [Releases]([https://github.com/Devil2020/](https://github.com/morse-29121997/Movie/releases/tag/1.0.0)) to download the latest APK.
 
 
 
@@ -39,12 +39,12 @@ Go to the [Releases](https://github.com/Devil2020/) to download the latest APK.
     - ViewModel - UI related data holder, lifecycle aware.
     - RunTime Cashe construct a Cache using the abstract layer .
 - Architecture
-    - MVI Architecture (View - DataBinding - ViewModel - Intent)
+    - MVI Architecture (View use DataBinding - Model - Intent)
     - [Binding Adapter]() - Android DataBinding kit for notifying data changes to UI layers.
     - Repository pattern
     - Clean Architecture as Modularization
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
-- [Proto Bufs Data Store](https://github.com/square/retrofit) - construct the Cache .
+- [Room](https://github.com/square/retrofit) - construct the Cache .
 - [Gson](https://github.com/square/moshi/) - A modern JSON library for Kotlin and Java.
 - [Glide](https://square.github.io/Glide/)
 - [Material-Components](https://github.com/material-components/material-components-android) - Material design components like ripple animation, cardView.
