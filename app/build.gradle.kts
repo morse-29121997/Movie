@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.morse.moviesmagic"
-        minSdk = 24
+        minSdk = 21
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
